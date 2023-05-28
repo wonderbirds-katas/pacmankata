@@ -1,10 +1,12 @@
 package systems.boos.pacmankata;
 
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class GameState {
     private final int columns;
+    private final int rows;
 
     public GameState() {
         this(0, 0);
@@ -12,6 +14,7 @@ public class GameState {
 
     public GameState(int columns, int rows) {
         this.columns = columns;
+        this.rows = rows;
     }
 
     @Override
@@ -20,14 +23,25 @@ public class GameState {
             return "";
         }
 
-        var leftRepresentation = visualizeDots(calculateCenterColumn() - 1);
-        var rightRepresentation = visualizeDots(columns - calculateCenterColumn());
+        var boardRepresentation = new ArrayList<String>();
+        var centerRow = calculateCenterRow();
 
-        return leftRepresentation + visualizePacMan() + rightRepresentation;
-    }
+        for (var row = 1; row <= rows; row++) {
+            var leftRepresentation = visualizeDots(calculateCenterColumn() - 1);
+            var rightRepresentation = visualizeDots(columns - calculateCenterColumn());
 
-    private static String visualizePacMan() {
-        return "V";
+            String rowRepresentation;
+            if (row == centerRow) {
+                String pacMan = "V";
+                rowRepresentation = leftRepresentation + pacMan + rightRepresentation;
+            } else {
+                String dot = ".";
+                rowRepresentation = leftRepresentation + dot + rightRepresentation;
+            }
+            boardRepresentation.add(rowRepresentation);
+        }
+
+        return String.join("\n", boardRepresentation);
     }
 
     private String visualizeDots(int numberOfDots) {
@@ -40,4 +54,9 @@ public class GameState {
     private int calculateCenterColumn() {
         return 1 + Math.floorDiv(columns - 1, 2);
     }
+
+    private int calculateCenterRow() {
+        return 1 + Math.floorDiv(rows - 1, 2);
+    }
+
 }

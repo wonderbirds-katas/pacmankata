@@ -24,4 +24,9 @@ class GameStateTest {
     void toString_Nx1Board(int columns, String expected) {
         assertEquals(expected, new GameState(columns, 1).toString());
     }
+
+    @Test
+    void toString_1x2Board() {
+        assertEquals("V\n.", new GameState(1, 2).toString());
+    }
 }
