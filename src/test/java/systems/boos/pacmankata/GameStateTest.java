@@ -8,11 +8,6 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameStateTest {
-    @Test
-    void toString_EmptyBoard() {
-        assertEquals("", new GameState().toString());
-    }
-
     @DisplayName("toString_Nx1Board(...)")
     @ParameterizedTest(name = "{0} columns are visualized as \"{1}\"")
     @CsvSource({

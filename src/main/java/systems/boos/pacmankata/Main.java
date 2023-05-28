@@ -8,7 +8,7 @@ public class Main {
         Logger logger = LoggerFactory.getLogger(Main.class);
         logger.info("Initial Game State");
         logger.info("==================");
-        String stateDisplay = new GameState().toString();
+        String stateDisplay = new GameState(1, 1).toString();
         logger.info(stateDisplay);
     }
 }
