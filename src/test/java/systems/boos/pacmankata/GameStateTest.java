@@ -20,8 +20,24 @@ class GameStateTest {
         assertEquals(expected, new GameState(columns, 1).toString());
     }
 
-    @Test
-    void toString_1x2Board() {
-        assertEquals("V\n.", new GameState(1, 2).toString());
+    @DisplayName("toString_NxNBoard(...)")
+    @ParameterizedTest(name = "{0} columns and {1} rows are visualized as \"{2}\"")
+    @CsvSource({
+            "1, 1, V",
+            "2, 2, 'V.\n..'",
+            "5, 5, '.....\n.....\n..V..\n.....\n.....'",
+    })
+    void toString_NxNBoard(int columns, int rows, String expected) {
+        assertEquals(expected, new GameState(columns, rows).toString());
+    }
+
+    @DisplayName("toString_MxNBoard(...)")
+    @ParameterizedTest(name = "{0} columns and {1} rows are visualized as \"{2}\"")
+    @CsvSource({
+            "2, 6, '..\n..\nV.\n..\n..\n..'",
+            "5, 3, '.....\n..V..\n.....'",
+    })
+    void toString_MxNBoard(int columns, int rows, String expected) {
+        assertEquals(expected, new GameState(columns, rows).toString());
     }
 }
