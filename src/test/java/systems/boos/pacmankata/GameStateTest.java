@@ -6,12 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameStateTest {
     @Test
-    void ToString_EmptyBoard() {
+    void toString_EmptyBoard() {
         assertEquals("", new GameState().toString());
     }
 
     @Test
     void toString_1x1Board() {
         assertEquals("V", new GameState(1, 1).toString());
+    }
+
+    @Test
+    void toString_2x1Board() {
+        assertEquals("V.", new GameState(2, 1).toString());
     }
 }

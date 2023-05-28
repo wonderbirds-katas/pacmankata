@@ -1,5 +1,8 @@
 package systems.boos.pacmankata;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class GameState {
     private final int columns;
 
@@ -13,9 +16,10 @@ public class GameState {
 
     @Override
     public String toString() {
-        if (columns > 0) {
-            return "V";
+        if (columns == 0) {
+            return "";
         }
-        return "";
+
+        return "V" + IntStream.range(1, columns).mapToObj(x -> ".").collect(Collectors.joining(""));
     }
 }
