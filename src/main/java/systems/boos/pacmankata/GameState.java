@@ -20,6 +20,24 @@ public class GameState {
             return "";
         }
 
-        return "V" + IntStream.range(1, columns).mapToObj(x -> ".").collect(Collectors.joining(""));
+        var leftRepresentation = visualizeDots(calculateCenterColumn() - 1);
+        var rightRepresentation = visualizeDots(columns - calculateCenterColumn());
+
+        return leftRepresentation + visualizePacMan() + rightRepresentation;
+    }
+
+    private static String visualizePacMan() {
+        return "V";
+    }
+
+    private String visualizeDots(int numberOfDots) {
+        if (numberOfDots < 1) {
+            return "";
+        }
+        return IntStream.range(0, numberOfDots).mapToObj(x -> ".").collect(Collectors.joining(""));
+    }
+
+    private int calculateCenterColumn() {
+        return 1 + Math.floorDiv(columns - 1, 2);
     }
 }
