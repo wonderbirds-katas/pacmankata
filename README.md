@@ -14,3 +14,9 @@ To build and run the tests, enter
 ```shell
 gradle test
 ```
+
+To run the application, enter
+
+```shell
+gradle run
+```
