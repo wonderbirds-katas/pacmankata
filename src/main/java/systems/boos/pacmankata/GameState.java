@@ -1,7 +1,5 @@
 package systems.boos.pacmankata;
 
-import java.util.ArrayList;
-
 public class GameState {
     private final int columns;
     private final int rows;
@@ -36,10 +34,13 @@ public class GameState {
 
     @Override
     public String toString() {
-        var boardRows = new ArrayList<String>();
+        var boardRows = new StringBuilder();
+
         for (String[] row : board) {
-            boardRows.add(String.join("", row));
+            String rowString = String.join("", row) + "\n";
+            boardRows.append(rowString);
         }
-        return String.join("\n", boardRows);
+
+        return boardRows.toString();
     }
 }
