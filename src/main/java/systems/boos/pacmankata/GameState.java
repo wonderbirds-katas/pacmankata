@@ -27,37 +27,19 @@ public class GameState {
     }
 
     private void putPacManToCenter(String[][] matrix) {
-        if (boardIsEmpty()) {
-            return;
-        }
+        int centerColumnIndex = Math.floorDiv(columns - 1, 2);
+        int centerRowIndex = Math.floorDiv(rows - 1, 2);
 
         String pacMan = "V";
-        matrix[calculateCenterRow() - 1][calculateCenterColumn() - 1] = pacMan;
+        matrix[centerRowIndex][centerColumnIndex] = pacMan;
     }
 
     @Override
     public String toString() {
-        if (boardIsEmpty()) {
-            return "";
-        }
-
         var boardRows = new ArrayList<String>();
         for (String[] row : board) {
             boardRows.add(String.join("", row));
         }
         return String.join("\n", boardRows);
     }
-
-    private boolean boardIsEmpty() {
-        return columns == 0 || rows == 0;
-    }
-
-    private int calculateCenterColumn() {
-        return 1 + Math.floorDiv(columns - 1, 2);
-    }
-
-    private int calculateCenterRow() {
-        return 1 + Math.floorDiv(rows - 1, 2);
-    }
-
 }
