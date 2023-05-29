@@ -1,5 +1,7 @@
 package systems.boos.pacmankata;
 
+import java.util.Objects;
+
 public class GameState {
     private final int columns;
     private final int rows;
@@ -10,37 +12,67 @@ public class GameState {
         this.rows = rows;
 
         board = createEmptyBoard();
-        putPacManToCenter(board);
+        putPacManToCenter();
     }
 
     private String[][] createEmptyBoard() {
-        var matrix = new String[rows][columns];
+        var result = new String[rows][columns];
         String dot = ".";
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
-                matrix[row][column] = dot;
+                result[row][column] = dot;
             }
         }
-        return matrix;
+        return result;
     }
 
-    private void putPacManToCenter(String[][] matrix) {
+    private void putPacManToCenter() {
         int centerColumnIndex = Math.floorDiv(columns - 1, 2);
         int centerRowIndex = Math.floorDiv(rows - 1, 2);
 
         String pacMan = "V";
-        matrix[centerRowIndex][centerColumnIndex] = pacMan;
+        board[centerRowIndex][centerColumnIndex] = pacMan;
+    }
+
+    @Override
+    public int hashCode() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null) return false;
+        if (getClass() != object.getClass()) return false;
+
+        var other = (GameState) object;
+
+        if (rows != other.rows || columns != other.columns) return false;
+
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                if (!Objects.equals(board[row][column], other.board[row][column])) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     @Override
     public String toString() {
-        var boardRows = new StringBuilder();
+        var resultBuilder = new StringBuilder();
 
         for (String[] row : board) {
             String rowString = String.join("", row) + "\n";
-            boardRows.append(rowString);
+            resultBuilder.append(rowString);
         }
 
-        return boardRows.toString();
+        return resultBuilder.toString();
+    }
+
+    public void placeSymbol(String symbol, int column, int row) {
+        board[column - 1][row - 1] = symbol;
     }
 }
