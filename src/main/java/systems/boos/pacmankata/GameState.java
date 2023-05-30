@@ -89,6 +89,10 @@ public class GameState {
         placeSymbol(" ", pacManColumn, pacManRow);
 
         pacManRow--;
+        if (pacManRow < 1) {
+            pacManRow = rows;
+        }
+        
         placeSymbol("V", pacManColumn, pacManRow);
     }
 }
