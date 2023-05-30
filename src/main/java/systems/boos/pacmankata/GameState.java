@@ -16,11 +16,11 @@ public class GameState {
     }
 
     private String[][] createEmptyBoard() {
-        var result = new String[rows][columns];
+        var result = new String[columns][rows];
         String dot = ".";
-        for (int row = 0; row < rows; row++) {
-            for (int column = 0; column < columns; column++) {
-                result[row][column] = dot;
+        for (int column = 0; column < columns; column++) {
+            for (int row = 0; row < rows; row++) {
+                result[column][row] = dot;
             }
         }
         return result;
@@ -31,7 +31,7 @@ public class GameState {
         int centerRowIndex = Math.floorDiv(rows - 1, 2);
 
         String pacMan = "V";
-        board[centerRowIndex][centerColumnIndex] = pacMan;
+        board[centerColumnIndex][centerRowIndex] = pacMan;
     }
 
     @Override
@@ -49,9 +49,9 @@ public class GameState {
 
         if (rows != other.rows || columns != other.columns) return false;
 
-        for (int row = 0; row < rows; row++) {
-            for (int column = 0; column < columns; column++) {
-                if (!Objects.equals(board[row][column], other.board[row][column])) {
+        for (int column = 0; column < columns; column++) {
+            for (int row = 0; row < rows; row++) {
+                if (!Objects.equals(board[column][row], other.board[column][row])) {
                     return false;
                 }
             }
@@ -64,8 +64,12 @@ public class GameState {
     public String toString() {
         var resultBuilder = new StringBuilder();
 
-        for (String[] row : board) {
-            String rowString = String.join("", row) + "\n";
+        for (int row = 0; row < rows; row++) {
+            StringBuilder rowString = new StringBuilder();
+            for (int column = 0; column < columns; column++) {
+                rowString.append(board[column][row]);
+            }
+            rowString.append("\n");
             resultBuilder.append(rowString);
         }
 
