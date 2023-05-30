@@ -5,6 +5,6 @@ public class GameEngine {
     }
 
     public static void turn(GameState state) {
-        state.moveUp();
+        new MoveUp().execute(state);
     }
 }
