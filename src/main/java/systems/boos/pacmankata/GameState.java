@@ -6,6 +6,8 @@ public class GameState {
     private final int columns;
     private final int rows;
     private final String[][] board;
+    private int pacManColumn;
+    private int pacManRow;
 
     public GameState(int columns, int rows) {
         this.columns = columns;
@@ -27,11 +29,14 @@ public class GameState {
     }
 
     private void putPacManToCenter() {
-        int centerColumnIndex = Math.floorDiv(columns - 1, 2);
-        int centerRowIndex = Math.floorDiv(rows - 1, 2);
+        int centerColumnIndex = 1 + Math.floorDiv(columns - 1, 2);
+        int centerRowIndex = 1 + Math.floorDiv(rows - 1, 2);
+
+        pacManColumn = centerColumnIndex;
+        pacManRow = centerRowIndex;
 
         String pacMan = "V";
-        board[centerColumnIndex][centerRowIndex] = pacMan;
+        board[pacManColumn - 1][pacManRow - 1] = pacMan;
     }
 
     @Override
@@ -78,5 +83,12 @@ public class GameState {
 
     public void placeSymbol(String symbol, int column, int row) {
         board[column - 1][row - 1] = symbol;
+    }
+
+    public void moveUp() {
+        placeSymbol(" ", pacManColumn, pacManRow);
+
+        pacManRow--;
+        placeSymbol("V", pacManColumn, pacManRow);
     }
 }

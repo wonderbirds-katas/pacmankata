@@ -30,4 +30,19 @@ class GameEngineTest {
 
         assertEquals(expectedState, state);
     }
+
+    @Test
+    void turn_twiceOn5x5Board() {
+        var state = new GameState(5, 5);
+
+        var expectedState = new GameState(5, 5);
+        expectedState.placeSymbol("V", 3, 1);
+        expectedState.placeSymbol(" ", 3, 2);
+        expectedState.placeSymbol(" ", 3, 3);
+
+        GameEngine.turn(state);
+        GameEngine.turn(state);
+
+        assertEquals(expectedState, state);
+    }
 }
