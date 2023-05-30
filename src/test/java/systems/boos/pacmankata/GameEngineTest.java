@@ -13,7 +13,7 @@ class GameEngineTest {
         expectedState.placeSymbol(" ", 2, 2);
         expectedState.placeSymbol("V", 2, 1);
 
-        GameEngine.turn(state);
+        new GameEngine(state).turn();
 
         assertEquals(expectedState, state);
     }
@@ -26,7 +26,7 @@ class GameEngineTest {
         expectedState.placeSymbol(" ", 2, 2);
         expectedState.placeSymbol("V", 2, 1);
 
-        GameEngine.turn(state);
+        new GameEngine(state).turn();
 
         assertEquals(expectedState, state);
     }
@@ -40,8 +40,9 @@ class GameEngineTest {
         expectedState.placeSymbol(" ", 3, 2);
         expectedState.placeSymbol("V", 3, 1);
 
-        GameEngine.turn(state);
-        GameEngine.turn(state);
+        GameEngine engine = new GameEngine(state);
+        engine.turn();
+        engine.turn();
 
         assertEquals(expectedState, state);
     }
@@ -56,9 +57,10 @@ class GameEngineTest {
         expectedState.placeSymbol(" ", 3, 1);
         expectedState.placeSymbol("V", 3, 5);
 
-        GameEngine.turn(state);
-        GameEngine.turn(state);
-        GameEngine.turn(state);
+        GameEngine engine = new GameEngine(state);
+        engine.turn();
+        engine.turn();
+        engine.turn();
 
         assertEquals(expectedState, state);
     }
