@@ -5,7 +5,7 @@ import java.util.Objects;
 public class GameState {
     private final int columns;
     private final int rows;
-    private final String[][] board;
+    private String[][] board;
     private int pacManColumn;
     private int pacManRow;
 
@@ -13,22 +13,21 @@ public class GameState {
         this.columns = columns;
         this.rows = rows;
 
-        board = createEmptyBoard();
-        putPacManToCenter();
+        createEmptyBoard();
+        createPacMan();
     }
 
-    private String[][] createEmptyBoard() {
-        var result = new String[columns][rows];
+    private void createEmptyBoard() {
+        board = new String[columns][rows];
         String dot = ".";
         for (int column = 0; column < columns; column++) {
             for (int row = 0; row < rows; row++) {
-                result[column][row] = dot;
+                board[column][row] = dot;
             }
         }
-        return result;
     }
 
-    private void putPacManToCenter() {
+    private void createPacMan() {
         int centerColumnIndex = 1 + Math.floorDiv(columns - 1, 2);
         int centerRowIndex = 1 + Math.floorDiv(rows - 1, 2);
 
