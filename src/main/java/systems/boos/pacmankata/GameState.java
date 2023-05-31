@@ -103,7 +103,18 @@ public class GameState {
         if (pacManRow > rows) {
             pacManRow = 1;
         }
-        
+
         placeSymbol("A", pacManColumn, pacManRow);
+    }
+
+    public void moveRight() {
+        placeSymbol(" ", pacManColumn, pacManRow);
+
+        pacManColumn++;
+        if (pacManColumn > columns) {
+            pacManColumn = 1;
+        }
+
+        placeSymbol("<", pacManColumn, pacManRow);
     }
 }
