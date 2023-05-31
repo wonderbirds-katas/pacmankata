@@ -10,8 +10,8 @@ class GameStateMoveDownTest {
         var state = new GameState(5, 5);
 
         var expectedState = new GameState(5, 5);
-        expectedState.placeSymbol(" ", 3, 3);
-        expectedState.placeSymbol("A", 3, 4);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 3);
+        expectedState.placeSymbol(Symbols.PACMAN_DOWN, 3, 4);
 
         state.moveDown();
 
@@ -23,9 +23,9 @@ class GameStateMoveDownTest {
         var state = new GameState(5, 5);
 
         var expectedState = new GameState(5, 5);
-        expectedState.placeSymbol(" ", 3, 3);
-        expectedState.placeSymbol(" ", 3, 4);
-        expectedState.placeSymbol("A", 3, 5);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 3);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 4);
+        expectedState.placeSymbol(Symbols.PACMAN_DOWN, 3, 5);
 
         state.moveDown();
         state.moveDown();
@@ -38,10 +38,10 @@ class GameStateMoveDownTest {
         var state = new GameState(5, 5);
 
         var expectedState = new GameState(5, 5);
-        expectedState.placeSymbol(" ", 3, 3);
-        expectedState.placeSymbol(" ", 3, 4);
-        expectedState.placeSymbol(" ", 3, 5);
-        expectedState.placeSymbol("A", 3, 1);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 3);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 4);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 5);
+        expectedState.placeSymbol(Symbols.PACMAN_DOWN, 3, 1);
 
         state.moveDown();
         state.moveDown();

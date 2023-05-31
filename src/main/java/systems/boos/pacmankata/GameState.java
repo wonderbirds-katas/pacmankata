@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class GameState {
     private final int columns;
     private final int rows;
-    private String[][] board;
+    private Symbols[][] board;
     private int pacManColumn;
     private int pacManRow;
 
@@ -18,11 +18,10 @@ public class GameState {
     }
 
     private void createEmptyBoard() {
-        board = new String[columns][rows];
-        String dot = ".";
+        board = new Symbols[columns][rows];
         for (int column = 0; column < columns; column++) {
             for (int row = 0; row < rows; row++) {
-                board[column][row] = dot;
+                board[column][row] = Symbols.DOT;
             }
         }
     }
@@ -34,8 +33,7 @@ public class GameState {
         pacManColumn = centerColumnIndex;
         pacManRow = centerRowIndex;
 
-        String pacMan = "V";
-        board[pacManColumn - 1][pacManRow - 1] = pacMan;
+        board[pacManColumn - 1][pacManRow - 1] = Symbols.PACMAN_UP;
     }
 
     @Override
@@ -77,51 +75,51 @@ public class GameState {
         return resultBuilder.toString();
     }
 
-    public void placeSymbol(String symbol, int column, int row) {
+    public void placeSymbol(Symbols symbol, int column, int row) {
         board[column - 1][row - 1] = symbol;
     }
 
     public void moveUp() {
-        placeSymbol(" ", pacManColumn, pacManRow);
+        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
 
         pacManRow--;
         if (pacManRow < 1) {
             pacManRow = rows;
         }
 
-        placeSymbol("V", pacManColumn, pacManRow);
+        placeSymbol(Symbols.PACMAN_UP, pacManColumn, pacManRow);
     }
 
     public void moveDown() {
-        placeSymbol(" ", pacManColumn, pacManRow);
+        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
 
         pacManRow++;
         if (pacManRow > rows) {
             pacManRow = 1;
         }
 
-        placeSymbol("A", pacManColumn, pacManRow);
+        placeSymbol(Symbols.PACMAN_DOWN, pacManColumn, pacManRow);
     }
 
     public void moveRight() {
-        placeSymbol(" ", pacManColumn, pacManRow);
+        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
 
         pacManColumn++;
         if (pacManColumn > columns) {
             pacManColumn = 1;
         }
 
-        placeSymbol("<", pacManColumn, pacManRow);
+        placeSymbol(Symbols.PACMAN_RIGHT, pacManColumn, pacManRow);
     }
 
     public void moveLeft() {
-        placeSymbol(" ", pacManColumn, pacManRow);
+        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
 
         pacManColumn--;
         if (pacManColumn < 1) {
             pacManColumn = columns;
         }
 
-        placeSymbol(">", pacManColumn, pacManRow);
+        placeSymbol(Symbols.PACMAN_LEFT, pacManColumn, pacManRow);
     }
 }

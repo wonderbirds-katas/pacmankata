@@ -10,8 +10,8 @@ class GameStateMoveUpTest {
         var state = new GameState(3, 3);
 
         var expectedState = new GameState(3, 3);
-        expectedState.placeSymbol(" ", 2, 2);
-        expectedState.placeSymbol("V", 2, 1);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 2, 2);
+        expectedState.placeSymbol(Symbols.PACMAN_UP, 2, 1);
 
         state.moveUp();
 
@@ -23,8 +23,8 @@ class GameStateMoveUpTest {
         var state = new GameState(4, 3);
 
         var expectedState = new GameState(4, 3);
-        expectedState.placeSymbol(" ", 2, 2);
-        expectedState.placeSymbol("V", 2, 1);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 2, 2);
+        expectedState.placeSymbol(Symbols.PACMAN_UP, 2, 1);
 
         state.moveUp();
 
@@ -36,9 +36,9 @@ class GameStateMoveUpTest {
         var state = new GameState(5, 5);
 
         var expectedState = new GameState(5, 5);
-        expectedState.placeSymbol(" ", 3, 3);
-        expectedState.placeSymbol(" ", 3, 2);
-        expectedState.placeSymbol("V", 3, 1);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 3);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 2);
+        expectedState.placeSymbol(Symbols.PACMAN_UP, 3, 1);
 
         state.moveUp();
         state.moveUp();
@@ -51,10 +51,10 @@ class GameStateMoveUpTest {
         var state = new GameState(5, 5);
 
         var expectedState = new GameState(5, 5);
-        expectedState.placeSymbol(" ", 3, 3);
-        expectedState.placeSymbol(" ", 3, 2);
-        expectedState.placeSymbol(" ", 3, 1);
-        expectedState.placeSymbol("V", 3, 5);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 3);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 2);
+        expectedState.placeSymbol(Symbols.EMPTY_SPACE, 3, 1);
+        expectedState.placeSymbol(Symbols.PACMAN_UP, 3, 5);
 
         state.moveUp();
         state.moveUp();
