@@ -92,7 +92,18 @@ public class GameState {
         if (pacManRow < 1) {
             pacManRow = rows;
         }
-        
+
         placeSymbol("V", pacManColumn, pacManRow);
+    }
+
+    public void moveDown() {
+        placeSymbol(" ", pacManColumn, pacManRow);
+
+        pacManRow++;
+        if (pacManRow > rows) {
+            pacManRow = 1;
+        }
+        
+        placeSymbol("A", pacManColumn, pacManRow);
     }
 }
