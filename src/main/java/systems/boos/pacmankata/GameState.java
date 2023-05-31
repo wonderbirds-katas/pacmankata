@@ -1,6 +1,6 @@
 package systems.boos.pacmankata;
 
-import java.util.Objects;
+import java.util.Arrays;
 
 public class GameState {
     private final int columns;
@@ -54,11 +54,8 @@ public class GameState {
         if (rows != other.rows || columns != other.columns) return false;
 
         for (int column = 0; column < columns; column++) {
-            for (int row = 0; row < rows; row++) {
-                if (!Objects.equals(board[column][row], other.board[column][row])) {
-                    return false;
-                }
-            }
+            if (!Arrays.equals(board[column], other.board[column]))
+                return false;
         }
 
         return true;
