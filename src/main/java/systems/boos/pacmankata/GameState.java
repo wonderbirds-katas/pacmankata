@@ -117,4 +117,15 @@ public class GameState {
 
         placeSymbol("<", pacManColumn, pacManRow);
     }
+
+    public void moveLeft() {
+        placeSymbol(" ", pacManColumn, pacManRow);
+
+        pacManColumn--;
+        if (pacManColumn < 1) {
+            pacManColumn = columns;
+        }
+
+        placeSymbol(">", pacManColumn, pacManRow);
+    }
 }
