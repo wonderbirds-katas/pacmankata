@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MoveDownTest {
     @Test
-    void moveDown_3x3Board() {
+    void execute_3x3Board_movesPacMan() {
         var expectedState = new GameState(3, 3);
         expectedState.setSymbol(Symbols.EMPTY_SPACE, 2, 2);
         expectedState.setSymbol(Symbols.PACMAN_DOWN, 2, 3);
@@ -18,7 +18,7 @@ class MoveDownTest {
     }
 
     @Test
-    void moveDown_4x3Board() {
+    void execute_4x3Board_movesPacMan() {
         var expectedState = new GameState(4, 3);
         expectedState.setSymbol(Symbols.EMPTY_SPACE, 2, 2);
         expectedState.setSymbol(Symbols.PACMAN_DOWN, 2, 3);
@@ -30,7 +30,7 @@ class MoveDownTest {
     }
 
     @Test
-    void moveDown_twiceOn5x5Board() {
+    void execute_twiceOn5x5Board_movesPacMan() {
         var expectedState = new GameState(5, 5);
         expectedState.setSymbol(Symbols.EMPTY_SPACE, 3, 3);
         expectedState.setSymbol(Symbols.EMPTY_SPACE, 3, 4);
@@ -44,7 +44,7 @@ class MoveDownTest {
     }
 
     @Test
-    void moveDown_crossBottomBoundaryOn5x5Board() {
+    void execute_crossBottomBoundaryOn5x5Board_movesPacMan() {
         var expectedState = new GameState(5, 5);
         expectedState.setSymbol(Symbols.EMPTY_SPACE, 3, 3);
         expectedState.setSymbol(Symbols.EMPTY_SPACE, 3, 4);
