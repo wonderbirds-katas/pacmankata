@@ -18,22 +18,22 @@ public class GameState {
     }
 
     private void createEmptyBoard() {
-        board = new Symbols[columns][rows];
-        for (int column = 0; column < columns; column++) {
-            for (int row = 0; row < rows; row++) {
+        board = new Symbols[getColumns()][getRows()];
+        for (int column = 0; column < getColumns(); column++) {
+            for (int row = 0; row < getRows(); row++) {
                 board[column][row] = Symbols.DOT;
             }
         }
     }
 
     private void createPacMan() {
-        int centerColumnIndex = 1 + Math.floorDiv(columns - 1, 2);
-        int centerRowIndex = 1 + Math.floorDiv(rows - 1, 2);
+        int centerColumnIndex = 1 + Math.floorDiv(getColumns() - 1, 2);
+        int centerRowIndex = 1 + Math.floorDiv(getRows() - 1, 2);
 
-        pacManColumn = centerColumnIndex;
-        pacManRow = centerRowIndex;
+        setPacManColumn(centerColumnIndex);
+        setPacManRow(centerRowIndex);
 
-        board[pacManColumn - 1][pacManRow - 1] = Symbols.PACMAN_UP;
+        board[getPacManColumn() - 1][getPacManRow() - 1] = Symbols.PACMAN_UP;
     }
 
     @Override
@@ -49,9 +49,9 @@ public class GameState {
 
         var other = (GameState) object;
 
-        if (rows != other.rows || columns != other.columns) return false;
+        if (getRows() != other.getRows() || getColumns() != other.getColumns()) return false;
 
-        for (int column = 0; column < columns; column++) {
+        for (int column = 0; column < getColumns(); column++) {
             if (!Arrays.equals(board[column], other.board[column]))
                 return false;
         }
@@ -63,9 +63,9 @@ public class GameState {
     public String toString() {
         var resultBuilder = new StringBuilder();
 
-        for (int row = 0; row < rows; row++) {
+        for (int row = 0; row < getRows(); row++) {
             StringBuilder rowString = new StringBuilder();
-            for (int column = 0; column < columns; column++) {
+            for (int column = 0; column < getColumns(); column++) {
                 rowString.append(board[column][row]);
             }
             rowString.append("\n");
@@ -79,47 +79,60 @@ public class GameState {
         board[column - 1][row - 1] = symbol;
     }
 
-    public void moveUp() {
-        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
-
-        pacManRow--;
-        if (pacManRow < 1) {
-            pacManRow = rows;
-        }
-
-        placeSymbol(Symbols.PACMAN_UP, pacManColumn, pacManRow);
-    }
-
     public void moveDown() {
-        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
+        placeSymbol(Symbols.EMPTY_SPACE, getPacManColumn(), getPacManRow());
 
-        pacManRow++;
-        if (pacManRow > rows) {
-            pacManRow = 1;
+        setPacManRow(getPacManRow() + 1);
+        if (getPacManRow() > getRows()) {
+            setPacManRow(1);
         }
 
-        placeSymbol(Symbols.PACMAN_DOWN, pacManColumn, pacManRow);
+        placeSymbol(Symbols.PACMAN_DOWN, getPacManColumn(), getPacManRow());
     }
 
     public void moveRight() {
-        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
+        placeSymbol(Symbols.EMPTY_SPACE, getPacManColumn(), getPacManRow());
 
-        pacManColumn++;
-        if (pacManColumn > columns) {
-            pacManColumn = 1;
+        setPacManColumn(getPacManColumn() + 1);
+        if (getPacManColumn() > getColumns()) {
+            setPacManColumn(1);
         }
 
-        placeSymbol(Symbols.PACMAN_RIGHT, pacManColumn, pacManRow);
+        placeSymbol(Symbols.PACMAN_RIGHT, getPacManColumn(), getPacManRow());
     }
 
     public void moveLeft() {
-        placeSymbol(Symbols.EMPTY_SPACE, pacManColumn, pacManRow);
+        placeSymbol(Symbols.EMPTY_SPACE, getPacManColumn(), getPacManRow());
 
-        pacManColumn--;
-        if (pacManColumn < 1) {
-            pacManColumn = columns;
+        setPacManColumn(getPacManColumn() - 1);
+        if (getPacManColumn() < 1) {
+            setPacManColumn(getColumns());
         }
 
-        placeSymbol(Symbols.PACMAN_LEFT, pacManColumn, pacManRow);
+        placeSymbol(Symbols.PACMAN_LEFT, getPacManColumn(), getPacManRow());
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getPacManColumn() {
+        return pacManColumn;
+    }
+
+    public void setPacManColumn(int pacManColumn) {
+        this.pacManColumn = pacManColumn;
+    }
+
+    public int getPacManRow() {
+        return pacManRow;
+    }
+
+    public void setPacManRow(int pacManRow) {
+        this.pacManRow = pacManRow;
     }
 }

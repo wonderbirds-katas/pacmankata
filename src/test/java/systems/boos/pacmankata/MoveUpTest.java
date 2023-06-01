@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GameStateMoveUpTest {
+class MoveUpTest {
     @Test
     void moveUp_3x3Board() {
         var expectedState = new GameState(3, 3);
@@ -12,7 +12,7 @@ class GameStateMoveUpTest {
         expectedState.placeSymbol(Symbols.PACMAN_UP, 2, 1);
 
         var state = new GameState(3, 3);
-        state.moveUp();
+        new MoveUp().execute(state);
 
         assertEquals(expectedState, state);
     }
@@ -24,7 +24,7 @@ class GameStateMoveUpTest {
         expectedState.placeSymbol(Symbols.PACMAN_UP, 2, 1);
 
         var state = new GameState(4, 3);
-        state.moveUp();
+        new MoveUp().execute(state);
 
         assertEquals(expectedState, state);
     }
@@ -37,8 +37,8 @@ class GameStateMoveUpTest {
         expectedState.placeSymbol(Symbols.PACMAN_UP, 3, 1);
 
         var state = new GameState(5, 5);
-        state.moveUp();
-        state.moveUp();
+        new MoveUp().execute(state);
+        new MoveUp().execute(state);
 
         assertEquals(expectedState, state);
     }
@@ -52,9 +52,9 @@ class GameStateMoveUpTest {
         expectedState.placeSymbol(Symbols.PACMAN_UP, 3, 5);
 
         var state = new GameState(5, 5);
-        state.moveUp();
-        state.moveUp();
-        state.moveUp();
+        new MoveUp().execute(state);
+        new MoveUp().execute(state);
+        new MoveUp().execute(state);
 
         assertEquals(expectedState, state);
     }
