@@ -64,11 +64,11 @@ public class GameState {
         return new Printer().print(this);
     }
 
-    public void placeSymbol(Symbols symbol, int column, int row) {
+    public void setSymbol(Symbols symbol, int column, int row) {
         board[column - 1][row - 1] = symbol;
     }
 
-    public Symbols getSymbolAt(int column, int row) {
+    public Symbols getSymbol(int column, int row) {
         return board[column][row];
     }
 
