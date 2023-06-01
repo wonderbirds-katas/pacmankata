@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GameStateToStringTest {
+class PrinterTest {
     @DisplayName("toString_Nx1Board(...)")
     @ParameterizedTest(name = "{0} columns are visualized as \"{1}\"")
     @CsvSource({
@@ -16,7 +16,7 @@ class GameStateToStringTest {
             "4, '.V..\n'",
     })
     void toString_Nx1Board(int columns, String expected) {
-        assertEquals(expected, new GameState(columns, 1).toString());
+        assertEquals(expected, new Printer().print(new GameState(columns, 1)));
     }
 
     @DisplayName("toString_NxNBoard(...)")
@@ -27,7 +27,7 @@ class GameStateToStringTest {
             "5, 5, '.....\n.....\n..V..\n.....\n.....\n'",
     })
     void toString_NxNBoard(int columns, int rows, String expected) {
-        assertEquals(expected, new GameState(columns, rows).toString());
+        assertEquals(expected, new Printer().print(new GameState(columns, rows)));
     }
 
     @DisplayName("toString_MxNBoard(...)")
@@ -37,6 +37,6 @@ class GameStateToStringTest {
             "5, 3, '.....\n..V..\n.....\n'",
     })
     void toString_MxNBoard(int columns, int rows, String expected) {
-        assertEquals(expected, new GameState(columns, rows).toString());
+        assertEquals(expected, new Printer().print(new GameState(columns, rows)));
     }
 }

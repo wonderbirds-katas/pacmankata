@@ -61,22 +61,15 @@ public class GameState {
 
     @Override
     public String toString() {
-        var resultBuilder = new StringBuilder();
-
-        for (int row = 0; row < getRows(); row++) {
-            StringBuilder rowString = new StringBuilder();
-            for (int column = 0; column < getColumns(); column++) {
-                rowString.append(board[column][row]);
-            }
-            rowString.append("\n");
-            resultBuilder.append(rowString);
-        }
-
-        return resultBuilder.toString();
+        return new Printer().print(this);
     }
 
     public void placeSymbol(Symbols symbol, int column, int row) {
         board[column - 1][row - 1] = symbol;
+    }
+
+    public Symbols getSymbolAt(int column, int row) {
+        return board[column][row];
     }
 
     public int getColumns() {
