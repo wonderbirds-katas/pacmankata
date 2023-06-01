@@ -90,17 +90,6 @@ public class GameState {
         placeSymbol(Symbols.PACMAN_RIGHT, getPacManColumn(), getPacManRow());
     }
 
-    public void moveLeft() {
-        placeSymbol(Symbols.EMPTY_SPACE, getPacManColumn(), getPacManRow());
-
-        setPacManColumn(getPacManColumn() - 1);
-        if (getPacManColumn() < 1) {
-            setPacManColumn(getColumns());
-        }
-
-        placeSymbol(Symbols.PACMAN_LEFT, getPacManColumn(), getPacManRow());
-    }
-
     public int getColumns() {
         return columns;
     }
