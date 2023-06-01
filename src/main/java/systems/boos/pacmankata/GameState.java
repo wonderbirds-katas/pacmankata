@@ -79,17 +79,6 @@ public class GameState {
         board[column - 1][row - 1] = symbol;
     }
 
-    public void moveRight() {
-        placeSymbol(Symbols.EMPTY_SPACE, getPacManColumn(), getPacManRow());
-
-        setPacManColumn(getPacManColumn() + 1);
-        if (getPacManColumn() > getColumns()) {
-            setPacManColumn(1);
-        }
-
-        placeSymbol(Symbols.PACMAN_RIGHT, getPacManColumn(), getPacManRow());
-    }
-
     public int getColumns() {
         return columns;
     }
