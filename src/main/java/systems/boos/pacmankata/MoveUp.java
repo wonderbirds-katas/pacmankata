@@ -21,18 +21,18 @@ public class MoveUp {
         if (nextRow < 1) {
             nextRow = state.getRows();
         }
-        targetLocation = new Location(state.getPacManColumn(), nextRow);
+        targetLocation = new Location(state.getPacManLocation().column(), nextRow);
     }
 
     private boolean isDotAtTargetLocation() {
         var nextRow = targetLocation.row();
-        return Symbols.DOT == state.getSymbol(state.getPacManColumn(), nextRow);
+        return Symbols.DOT == state.getSymbol(state.getPacManLocation().column(), nextRow);
     }
 
     private void movePacManToTargetLocation() {
         var nextRow = targetLocation.row();
-        state.setSymbol(Symbols.EMPTY_SPACE, state.getPacManColumn(), state.getPacManRow());
+        state.setSymbol(Symbols.EMPTY_SPACE, state.getPacManLocation().column(), state.getPacManRow());
         state.setPacManRow(nextRow);
-        state.setSymbol(Symbols.PACMAN_UP, state.getPacManColumn(), state.getPacManRow());
+        state.setSymbol(Symbols.PACMAN_UP, state.getPacManLocation().column(), state.getPacManRow());
     }
 }
