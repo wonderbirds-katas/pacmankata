@@ -3,11 +3,10 @@ package systems.boos.pacmankata;
 import java.util.Arrays;
 
 public class GameState {
+    private Location pacManLocation;
     private final int columns;
     private final int rows;
     private Symbols[][] board;
-    private int pacManColumn;
-    private int pacManRow;
 
     public GameState(int columns, int rows) {
         this.columns = columns;
@@ -27,13 +26,11 @@ public class GameState {
     }
 
     private void createPacMan() {
-        int centerColumnIndex = 1 + Math.floorDiv(getColumns() - 1, 2);
-        int centerRowIndex = 1 + Math.floorDiv(getRows() - 1, 2);
+        int centerColumn = 1 + Math.floorDiv(getColumns() - 1, 2);
+        int centerRow = 1 + Math.floorDiv(getRows() - 1, 2);
 
-        setPacManColumn(centerColumnIndex);
-        setPacManRow(centerRowIndex);
-
-        board[getPacManColumn() - 1][getPacManRow() - 1] = Symbols.PACMAN_UP;
+        pacManLocation = new Location(centerColumn, centerRow);
+        setSymbol(Symbols.PACMAN_UP, centerColumn, centerRow);
     }
 
     @Override
@@ -81,18 +78,26 @@ public class GameState {
     }
 
     public int getPacManColumn() {
-        return pacManColumn;
+        return pacManLocation.column();
     }
 
     public void setPacManColumn(int pacManColumn) {
-        this.pacManColumn = pacManColumn;
+        setPacManLocation(new Location(pacManColumn, getPacManRow()));
     }
 
     public int getPacManRow() {
-        return pacManRow;
+        return pacManLocation.row();
     }
 
     public void setPacManRow(int pacManRow) {
-        this.pacManRow = pacManRow;
+        setPacManLocation(new Location(getPacManColumn(), pacManRow));
+    }
+
+    public Location getPacManLocation() {
+        return pacManLocation;
+    }
+
+    public void setPacManLocation(Location pacManLocation) {
+        this.pacManLocation = pacManLocation;
     }
 }
