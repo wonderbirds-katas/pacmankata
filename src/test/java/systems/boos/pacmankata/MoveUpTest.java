@@ -2,7 +2,7 @@ package systems.boos.pacmankata;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MoveUpTest {
     @Test
@@ -15,6 +15,27 @@ class MoveUpTest {
         new MoveUp().execute(state);
 
         assertEquals(expectedState, state);
+    }
+
+    @Test
+    void execute_3x3Board_consumesDot() {
+        var state = new GameState(3, 3);
+
+        MoveUp move = new MoveUp();
+        move.execute(state);
+
+        assertTrue(move.hasConsumedDot());
+    }
+
+    @Test
+    void execute_enterEmptySpace_doesNotConsumeDot() {
+        var state = new GameState(3, 3);
+        state.setSymbol(Symbols.EMPTY_SPACE, 2, 1);
+
+        MoveUp move = new MoveUp();
+        move.execute(state);
+
+        assertFalse(move.hasConsumedDot());
     }
 
     @Test

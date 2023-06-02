@@ -69,7 +69,7 @@ public class GameState {
     }
 
     public Symbols getSymbol(int column, int row) {
-        return board[column][row];
+        return board[column - 1][row - 1];
     }
 
     public int getColumns() {
