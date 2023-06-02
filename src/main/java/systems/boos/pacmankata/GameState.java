@@ -78,15 +78,11 @@ public class GameState {
     }
 
     public int getPacManColumn() {
-        return pacManLocation.column();
-    }
-
-    public void setPacManColumn(int pacManColumn) {
-        setPacManLocation(new Location(pacManColumn, getPacManRow()));
+        return getPacManLocation().column();
     }
 
     public int getPacManRow() {
-        return pacManLocation.row();
+        return getPacManLocation().row();
     }
 
     public void setPacManRow(int pacManRow) {

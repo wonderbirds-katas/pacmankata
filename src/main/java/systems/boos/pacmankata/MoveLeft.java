@@ -4,9 +4,9 @@ public class MoveLeft {
     public void execute(GameState state) {
         state.setSymbol(Symbols.EMPTY_SPACE, state.getPacManColumn(), state.getPacManRow());
 
-        state.setPacManColumn(state.getPacManColumn() - 1);
+        state.setPacManLocation(new Location(state.getPacManColumn() - 1, state.getPacManRow()));
         if (state.getPacManColumn() < 1) {
-            state.setPacManColumn(state.getColumns());
+            state.setPacManLocation(new Location(state.getColumns(), state.getPacManRow()));
         }
 
         state.setSymbol(Symbols.PACMAN_LEFT, state.getPacManColumn(), state.getPacManRow());
