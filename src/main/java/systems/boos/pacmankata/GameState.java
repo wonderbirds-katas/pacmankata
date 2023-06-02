@@ -77,14 +77,6 @@ public class GameState {
         return rows;
     }
 
-    public int getPacManRow() {
-        return getPacManLocation().row();
-    }
-
-    public void setPacManRow(int pacManRow) {
-        setPacManLocation(new Location(getPacManLocation().column(), pacManRow));
-    }
-
     public Location getPacManLocation() {
         return pacManLocation;
     }

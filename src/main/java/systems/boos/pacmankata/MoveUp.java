@@ -17,7 +17,7 @@ public class MoveUp {
     }
 
     private void calculateTargetLocation() {
-        var nextRow = state.getPacManRow() - 1;
+        var nextRow = state.getPacManLocation().row() - 1;
         if (nextRow < 1) {
             nextRow = state.getRows();
         }
@@ -31,8 +31,8 @@ public class MoveUp {
 
     private void movePacManToTargetLocation() {
         var nextRow = targetLocation.row();
-        state.setSymbol(Symbols.EMPTY_SPACE, state.getPacManLocation().column(), state.getPacManRow());
-        state.setPacManRow(nextRow);
-        state.setSymbol(Symbols.PACMAN_UP, state.getPacManLocation().column(), state.getPacManRow());
+        state.setSymbol(Symbols.EMPTY_SPACE, state.getPacManLocation().column(), state.getPacManLocation().row());
+        state.setPacManLocation(new Location(state.getPacManLocation().column(), nextRow));
+        state.setSymbol(Symbols.PACMAN_UP, state.getPacManLocation().column(), state.getPacManLocation().row());
     }
 }
